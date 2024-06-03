@@ -1,0 +1,293 @@
+/* Styles for the entire page */
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: unset;
+}
+
+/***** NAVIGATION BAR *****/
+.navbar-section {
+    width: 100%;
+    background: rgb(255, 249, 225);
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    z-index: 1000; /* Ensure the nav bar stays on top of other elements */
+}
+
+/* Make the navbar fixed at the top */
+.navbar {
+    display: flex;
+    padding: 1% 6%; /* Reduced padding */
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgb(255, 249, 225); /* Ensure the background color remains */
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+nav a img {
+    height: 100px; /* Reduced height of the logo */
+}
+
+button {
+    background-color: #fff;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 5px; /* Reduced padding */
+    width: 80px; /* Reduced width */
+    font-size: 14px; /* Reduced font size */
+}
+
+ul li {
+    background: #fff;
+    border-radius: 80px;
+    list-style: none;
+    display: inline-block;
+    padding: 10px 20px; /* Reduced padding */
+    margin: 10px solid white; /* Reduced margin */
+    font-size: 16px; /* Reduced font size */
+    font-weight: 500;
+    color: #777;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 0.5s;
+}
+
+ul li::after {
+    content: '';
+    background: #bcbcc0;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top 0.5s, opacity 0.5s;
+}
+
+ul li:hover {
+    color: #fff !important;
+}
+
+ul li:hover::after {
+    top: 50%;
+    opacity: 1;
+}
+
+.navicons {
+    margin-right: 50px;
+}
+
+.imgbox {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/***** MORE INFORMATION SECTION ******/
+.moreinfo {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(4, 9, 30, 0.7)), url(images/Back.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    font-family: 'Spicy Rice', sans-serif;
+    color: #fff;
+}
+
+.goodwords {
+    font-size: 70px;
+    padding: 15% 2% 10%; /* Updated padding */
+}
+
+
+/***** ARROW ANIMATION *****/
+.arrow-scroll {
+    position: relative;
+    height: 4em;
+}
+
+.arrow {
+    border: solid #fff;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 8px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.arrow:nth-child(2) {
+    animation: arrow1 1.5s ease-in-out infinite;
+}
+
+.arrow:nth-child(3) {
+    animation: arrow2 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow1 {
+    100% {
+        opacity: 0;
+        top: 100%;
+    }
+}
+
+@keyframes arrow2 {
+    100% {
+        opacity: 0;
+        top: 50%;
+    }
+}
+
+/***** MENU SECTION *****/
+.menu {
+    width: 100%;
+    background-color: #fdf9ed;
+    padding: 160px;
+}
+
+.main {
+    max-width: 1500px;
+    width: 95%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add gap for spacing between cards */
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px); 
+    max-width: calc(33.333% - 20px); 
+    text-align: center;
+    height: 470px; /* Increased height for padding effect */
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centering items horizontally */
+    justify-content: space-around; /* Evenly distribute space between items */
+    border-radius: 30px; /* Increased border-radius for more curved borders */
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; /* Set card background to white */
+    padding: 20px; /* Added padding */
+}
+
+.card .image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card .image img {
+    width: 260px;
+    max-width: 260px; /* Fixed width */
+    height: 240px; /* Fixed height */
+    object-fit: cover;
+    border-radius: 20px; /* Slightly less than card border-radius for visual effect */
+}
+
+
+.card .caption {
+    padding: 1em;
+    text-align: center; /* Center the text */
+    line-height: 1.5em;
+    height: 25%
+}
+
+.card .caption p {
+    font-size: 1.2rem;
+}
+
+button.add {
+    margin: auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 5px solid #ccc;
+    cursor: pointer;
+}
+
+/***** RESPONSIVE STYLES *****/
+@media (min-width: 768px) {
+    .navbar {
+        padding: 1% 6%;
+    }
+
+    nav a img {
+        height: 100px;
+    }
+
+    button {
+        padding: 5px;
+        width: 80px;
+    }
+
+    ul li {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .goodwords {
+        padding: 15% 2% 10%;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar {
+        padding: 1% 3%;
+    }
+
+    nav a img {
+        height: 80px;
+    }
+
+    button {
+        padding: 5px;
+        width: 70px;
+    }
+
+    ul li {
+        padding: 8px 15px;
+        margin: 8px;
+        font-size: 14px;
+    }
+
+    .goodwords {
+        padding: 10% 2% 5%;
+    }
+
+    .card {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+.totalQuantity{
+    position: absolute;
+    top: 36;
+    right: 148;
+    font-size: x-large;
+    background-color: #b31030;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(20px);
+}
