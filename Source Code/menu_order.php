@@ -1,5 +1,44 @@
 <?php
+session_start();
 require_once 'connection.php';
+
+// Handle adding to cart
+if (isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+    $product_image = $_POST['product_image'];
+    $quantity = 1;
+
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['quantity']++;
+    } else {
+        $_SESSION['cart'][$product_id] = array(
+            'name' => $product_name,
+            'price' => $product_price,
+            'image' => $product_image,
+            'quantity' => $quantity
+        );
+    }
+}
+
+// Handle removing from cart
+if (isset($_POST['remove'])) {
+    $product_id = $_POST['product_id'];
+    unset($_SESSION['cart'][$product_id]);
+}
+
+// Handle updating cart
+if (isset($_POST['update'])) {
+    $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
+    $_SESSION['cart'][$product_id]['quantity'] = $quantity;
+}
+
+// Handle clearing cart
+if (isset($_POST['clear'])) {
+    unset($_SESSION['cart']);
+}
 
 $spl = "SELECT * FROM products";
 $all_product = $conn->query($spl);
@@ -41,14 +80,8 @@ $all_product = $conn->query($spl);
 
             <div class="iconCart">
                 <img src="Images/cart_icon.png" alt="Cart Image" height="58">
-                <div class="totalQuantity">0</div>
+                <!--<div class="totalQuantity">0</div> -->
             </div>
-            <!--
-            <div class="navicons">
-                <a href="https://www.tiktok.com/@mamtimande333?lang=en"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/wings_tacos/"><i class="fa-brands fa-instagram"></i></a>
-            </div>
--->
         </nav>
     </section>
 
@@ -63,12 +96,70 @@ $all_product = $conn->query($spl);
                     <p class="product_name"><?php echo $row["prod_name"]; ?></p>
                     <p class="price"><b>R<?php echo $row["price"]; ?></b></p>
                 </div>
-                <button onclick="window.location.href='login.php'" class="add">Add to cart</button>
+                <form method="post" action="">
+                    <!--<input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">-->
+                    <input type="hidden" name="product_name" value="<?php echo $row['prod_name']; ?>">
+                    <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+                    <input type="hidden" name="product_image" value="<?php echo base64_encode($row['img']); ?>">
+                    <button type="submit" name="add_to_cart" class="add">Add to cart</button>
+                </form>
             </div>
             <?php } ?>
         </main>
     </section>
+
+    <section class="cart">
+        <h2>Shopping Cart</h2>
+        <form method="post" action="">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
+                        <?php $total = 0; ?>
+                        <?php foreach($_SESSION['cart'] as $id => $product): ?>
+                            <tr>
+                                <td><img src="data:image/jpeg;base64,<?php echo $product['image']; ?>" height="50"></td>
+                                <td><?php echo $product['name']; ?></td>
+                                <td>R<?php echo $product['price']; ?></td>
+                                <td>
+                                    <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
+                                    <input type="hidden" name="product_id" value="<?php echo $id; ?>">
+                                    <button type="submit" name="update" class="update">Update</button>
+                                </td>
+                                <td>R<?php echo $product['price'] * $product['quantity']; ?></td>
+                                <td>
+                                    <button type="submit" name="remove" class="remove">Remove</button>
+                                </td>
+                            </tr>
+                            <?php $total += $product['price'] * $product['quantity']; ?>
+                        <?php endforeach; ?>
+                        <tr>
+                            <td colspan="4">Grand Total</td>
+                            <td>R<?php echo $total; ?></td>
+                            <td>
+                                <button type="submit" name="clear" class="clear">Delete All</button>
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">Your cart is empty</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+            <button type="submit" formaction="checkout.php" class="checkout">Proceed To Checkout</button>
+        </form>
+    </section>
+
+    
 </body>
 </html>
-
-
