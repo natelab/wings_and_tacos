@@ -275,6 +275,8 @@ button.add {
 }
 
 .cart .checkout {
+    display: block;
+    margin: 0 auto;
     background-color: #007bff;
     color: #fff;
 }

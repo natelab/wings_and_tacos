@@ -4,16 +4,25 @@ require_once 'connection.php';
 
 // Handle adding to cart
 if (isset($_POST['add_to_cart'])) {
-    $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $product_price = $_POST['product_price'];
     $product_image = $_POST['product_image'];
     $quantity = 1;
 
-    if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id]['quantity']++;
-    } else {
-        $_SESSION['cart'][$product_id] = array(
+    $product_exists = false;
+
+    // Check if the product already exists in the cart
+    foreach ($_SESSION['cart'] as $id => $product) {
+        if ($product['name'] == $product_name) {
+            $product_exists = true;
+            $_SESSION['cart'][$id]['quantity']++;
+            break;
+        }
+    }
+
+    // If the product does not exist, add it to the cart
+    if (!$product_exists) {
+        $_SESSION['cart'][] = array(
             'name' => $product_name,
             'price' => $product_price,
             'image' => $product_image,
@@ -24,16 +33,33 @@ if (isset($_POST['add_to_cart'])) {
 
 // Handle removing from cart
 if (isset($_POST['remove'])) {
-    $product_id = $_POST['product_id'];
-    unset($_SESSION['cart'][$product_id]);
+    $product_name = $_POST['product_name'];
+    foreach ($_SESSION['cart'] as $id => $product) {
+        if ($product['name'] == $product_name) {
+            unset($_SESSION['cart'][$id]);
+            break;
+        }
+    }
 }
 
 // Handle updating cart
 if (isset($_POST['update'])) {
-    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
     $quantity = $_POST['quantity'];
-    $_SESSION['cart'][$product_id]['quantity'] = $quantity;
+    foreach ($_SESSION['cart'] as $id => $product) {
+        if ($product['name'] == $product_name) {
+            $_SESSION['cart'][$id]['quantity'] = $quantity;
+            break;
+        }
+    }
 }
+
+// Calculate total price and grand total
+$total = 0;
+foreach ($_SESSION['cart'] as $product) {
+    $total += $product['price'] * $product['quantity'];
+}
+
 
 // Handle clearing cart
 if (isset($_POST['clear'])) {
@@ -131,9 +157,11 @@ $all_product = $conn->query($spl);
                                 <td><?php echo $product['name']; ?></td>
                                 <td>R<?php echo $product['price']; ?></td>
                                 <td>
-                                    <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
-                                    <input type="hidden" name="product_id" value="<?php echo $id; ?>">
-                                    <button type="submit" name="update" class="update">Update</button>
+                                <form method="post" action="">
+                                <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
+                                <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
+                                <button type="submit" name="update" class="update">Update</button>
+                                </form>
                                 </td>
                                 <td>R<?php echo $product['price'] * $product['quantity']; ?></td>
                                 <td>
