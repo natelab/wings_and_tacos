@@ -75,9 +75,11 @@ button {
     background-color: #fff;
     margin-left: 10px;
     border-radius: 10px;
-    padding: 5px; /* Reduced padding */
-    width: 80px; /* Reduced width */
-    font-size: 14px; /* Reduced font size */
+    padding: 5px;
+    width: 80px;
+    font-size: 14px;
+    color: rgba(50, 50, 52, 255); /* Text color */
+    border: 1px solid rgba(50, 50, 52, 255); /* Add border color for better visibility */
 }
 
 ul li {
@@ -206,17 +208,21 @@ ul li:hover::after {
 .card {
     flex: 1 1 calc(33.333% - 20px); 
     text-align: center;
-    height: 470vh; /* Increased height for padding effect */
-    width: 28vh;
+    height: auto;
     border: none;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centering items horizontally */
     justify-content: space-between; /* Evenly distribute space between items */
-    border-radius: 25px; /* Increased border-radius for more curved borders */
+    border-radius: 10px; /* Increased border-radius for more curved borders */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     background-color: #fff; /* Set card background to white */
-    padding: 20px ; /* Added padding */
+    padding: 20px; /* Added padding */
+    transition: transform 0.2s ease-in-out; /* Smooth transform on hover */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lift the card slightly on hover */
 }
 
 .card .image {
@@ -224,20 +230,21 @@ ul li:hover::after {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px; /* Space between image and caption */
 }
 
 .card .image img {
-    width: 20vh;
-    height: 220px; /* Fixed height */
+    width: 100%; /* Adjust width */
+    height: auto; /* Maintain aspect ratio */
     object-fit: cover;
-    border-radius: 25px; /* Slightly less than card border-radius for visual effect */
+    border-radius: 10px; /* Slightly less than card border-radius for visual effect */
 }
 
 .card .caption {
     padding: 1em;
     text-align: center; /* Center the text */
     line-height: 1.5em;
-    height: 25%
+    height: auto; /* Adjust height */
 }
 
 .card .caption p {
@@ -245,9 +252,36 @@ ul li:hover::after {
 }
 
 button.add {
-    margin: auto;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 10px 20px;
     background-color: rgba(50,50,52,255);
-    border: rgba(50,50,52,255);
+    border: none;
+    color: #fff;
     cursor: pointer;
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+button.add:hover {
+    background-color: #333; /* Darken button on hover */
+}
+
+.navbar-nav .nav-link {
+    color: rgba(50, 50, 52, 255) !important; /* Ensure nav links have the specified text color */
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(50, 50, 52, 255); /* Ensure the hover state retains the text color */
+}
+
+/* Specific styles for the login and register buttons */
+.btn-outline-primary {
+    color: rgba(50, 50, 52, 255); /* Text color */
+    border-color: rgba(50, 50, 52, 255); /* Border color */
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(50, 50, 52, 255); /* Background color on hover */
+    color: #fff; /* Text color on hover */
+    border-color: rgba(50, 50, 52, 255); /* Border color on hover */
 }

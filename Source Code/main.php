@@ -77,25 +77,26 @@ $all_product = $conn->query($spl);
     </section>
 
     <section class="menu">
-        <div class="container">
-            <div class="row">
-                <?php while($row = mysqli_fetch_assoc($all_product)) { ?>
-                <div class="col-md-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <div class="image">
-                            <a href="main.php"><img src="data:image/jpeg;base64,<?php echo base64_encode($row['img']); ?>" class="card-img-top" alt="<?php echo $row["prod_name"]; ?>"></a>
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title"><?php echo $row["prod_name"]; ?></h5>
-                            <p class="card-text"><strong>R<?php echo $row["price"]; ?></strong></p>
-                            <button onclick="window.location.href='login.php'" class="btn btn-primary add">Add to cart</button>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <?php while($row = mysqli_fetch_assoc($all_product)) { ?>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <div class="image">
+                        <a href="main.php"><img src="data:image/jpeg;base64,<?php echo base64_encode($row['img']); ?>" class="card-img-top" alt="<?php echo $row["prod_name"]; ?>"></a>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><?php echo $row["prod_name"]; ?></h5>
+                        <p class="card-text"><strong>R<?php echo $row["price"]; ?></strong></p>
+                        <button onclick="window.location.href='login.php'" class="btn btn-primary add">Add to cart</button>
                     </div>
                 </div>
-                <?php } ?>
             </div>
+            <?php } ?>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
