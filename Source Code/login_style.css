@@ -68,3 +68,43 @@ body{
     margin-bottom: 15px;
 }
 
+.footer {
+    background-color: #333;
+    color: #fff;
+}
+
+
+.footer-logo {
+    width: 360px; /* Increased width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 40px; /* Adjusted margin to move the image more to the left */
+}
+
+.social-links {
+    margin-bottom: 20px; /* Increased margin bottom */
+}
+
+.social-links a {
+    color: #fff;
+    margin-right: 20px; /* Increased margin right */
+    font-size: 24px; /* Increased font size */
+}
+
+.social-links a:last-child {
+    margin-right: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    font-size: 24px; /* Increased font size */
+}
+
+.footer p a {
+    color: #fff;
+    margin-right: 20px; /* Increased margin right */
+    font-size: 24px; /* Increased font size */
+}
+
+.footer p a:last-child {
+    margin-right: 0;
+}

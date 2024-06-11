@@ -7,11 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="login_style.css">
     <title>Login</title>
 </head>
 <body>
-    <div class="container">
+    <section class="container">
         <div class="box form-box">
             <?php
 
@@ -35,24 +37,24 @@
                     echo "<div class='message'>
                             <p>Wrong email or password.</p>
                           </div> <br>";
-                    echo "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button></a>"; 
+                    echo "<a href='javascript:self.history.back()'><button class='btn btn-primary'>Go Back</button></a>"; 
                 }
             } else {
             ?>
             <header>Login</header>
             <form action="" method="post">
-                <div class="field input"> 
+                <div class="form-group"> 
                     <label for="email">Email</label>
-                    <input type="text" name="email" autocomplete="off" id="email" required>
+                    <input type="text" class="form-control" name="email" autocomplete="off" id="email" required>
                 </div>
 
-                <div class="field input"> 
+                <div class="form-group"> 
                     <label for="password">Password</label>
-                    <input type="password" name="password" autocomplete="off" id="password" required>
+                    <input type="password" class="form-control" name="password" autocomplete="off" id="password" required>
                 </div>
 
-                <div class="field"> 
-                    <input type="submit" class="btn" name="submit" value="Login" required>
+                <div class="form-group"> 
+                    <input type="submit" class="btn btn-primary" name="submit" value="Login" required>
                 </div>
 
                 <div class="links">
@@ -61,7 +63,37 @@
             </form>
         </div>
         <?php } ?>
-    </div>
+    </section>
+    <!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
 
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="Images/Footer Logo.png" alt="Footer Logo" class="footer-logo">
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="social-links">
+                    <p>Connect with us: <br><!-- Added text -->
+                        <a href="https://www.tiktok.com/@mamtimande333?lang=en"><i class="fab fa-tiktok fa-lg"></i></a>
+                        <a href="https://www.instagram.com/wings_tacos/"><i class="fab fa-instagram fa-lg"></i></a>
+                    </p>
+                </div>
+                <p class="copyright">
+                    Wings & Tacos 2024 ©. All rights reserved.
+                    <br><br> <!-- Added empty line space -->
+                    This Website Was Developed, Designed and Is Maintained by Nathan Tinashe Mazonde
+                    <br>
+                    <a href="https://www.linkedin.com/in/nathan-mazonde"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://github.com/natelab"><i class="fab fa-github fa-lg"></i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
