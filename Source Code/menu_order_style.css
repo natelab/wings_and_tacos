@@ -154,67 +154,87 @@ ul li:hover::after {
 .menu {
     width: 100%;
     background-color: #fdf9ed;
-    padding: 160px;
+    padding: 25vh 0vh 10vh;
 }
 
 .main {
     max-width: 1500px;
-    width: 95%;
+    width: 100%;
     margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Add gap for spacing between cards */
+    gap: 0; /* Add gap for spacing between cards */
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 20px); 
-    max-width: calc(33.333% - 20px); 
-    text-align: center;
-    height: 470px; /* Increased height for padding effect */
-    border: none;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centering items horizontally */
-    justify-content: space-around; /* Evenly distribute space between items */
-    border-radius: 30px; /* Increased border-radius for more curved borders */
-    overflow: hidden; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    background-color: #fff; /* Set card background to white */
-    padding: 20px; /* Added padding */
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /* Make the card take full height */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lift the card slightly on hover */
 }
 
 .card .image {
-    flex: 1;
+    flex: 0 0 auto; /* Fixed space for the image */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    margin-bottom: 15px; /* Space between image and text */
 }
 
 .card .image img {
-    width: 260px;
-    max-width: 260px; /* Fixed width */
-    height: 240px; /* Fixed height */
+    width: 100%; /* Adjust width */
+    height: auto; /* Maintain aspect ratio */
     object-fit: cover;
-    border-radius: 20px; /* Slightly less than card border-radius for visual effect */
-}
-.card .caption {
-    padding: 1em;
-    text-align: center; /* Center the text */
-    line-height: 1.5em;
-    height: 25%
+    border-radius: 10px;
 }
 
-.card .caption p {
-    font-size: 1.2rem;
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    width: 100%;
+    flex-grow: 1; /* Allow card body to grow and take up available space */
+}
+
+.card .caption {
+    text-align: center;
+    line-height: 1.5em;
+    margin-bottom: 10px; /* Space between text and price */
+    flex: 0 0 auto; /* Fixed space for the caption */
+}
+
+.card .price {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between price and button */
+    flex: 0 0 auto; /* Fixed space for the price */
 }
 
 button.add {
-    margin: auto;
-    padding: 10px;
-    background-color: #fff;
-    border: 5px solid #ccc;
+    margin-top: auto; /* Push the button to the bottom */
+    padding: 10px 20px;
+    background-color: rgba(50,50,52,255);
+    border: none;
+    color: #fff;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    flex: 0 0 auto; /* Fixed space for the button */
+}
+
+button.add:hover {
+    background-color: #333;
 }
 
 /***** CART SECTION *****/
@@ -340,4 +360,46 @@ button.add {
         max-width: calc(50% - 20px);
     }
 }
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 60px 0; /* Increased padding */
+}
+
+.footer-logo {
+    width: 360px; /* Increased width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 40px; /* Adjusted margin to move the image more to the left */
+}
+
+.social-links {
+    margin-bottom: 20px; /* Increased margin bottom */
+}
+
+.social-links a {
+    color: #fff;
+    margin-right: 20px; /* Increased margin right */
+    font-size: 24px; /* Increased font size */
+}
+
+.social-links a:last-child {
+    margin-right: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    font-size: 20px; /* Increased font size */
+}
+
+.footer p a {
+    color: #fff;
+    margin-right: 20px; /* Increased margin right */
+    font-size: 20px; /* Increased font size */
+}
+
+.footer p a:last-child {
+    margin-right: 0;
+}
+
 
