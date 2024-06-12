@@ -61,10 +61,41 @@ $all_product = $conn->query($spl);
     <section class="moreinfo">
         <!-- MORE INFORMATION SECTION -->
         <div class="goodwords text-center">
-            <p>LOCALLY MADE MOUTH WATERING<br>
-            WINGS, TACOS, DRINKS<br>
-            & COOKIESSSS!!!!!!!<br>
-            (WHO CAN FORGET THE COOKIES!!!!!)
+            <p>BOLD FLAVORS!<br>
+            Taste your way through our delicious handcrafted  menu,<br>
+            carefully crafted with your taste buds in mind. We know<br>
+            that you’ll find yourself on an exciting culinary journey at<br>
+            WINGS & TACOS and we invite you to come back for more!<br>
+            Thank you for choosing to order from us!<br><br>
+            </p>
+
+            <h1>Our Delivery Locations:</h1>
+            <p>MIDRAND (THURS-SUN)<br>
+            PRETORIA (SAT-SUN)<br>
+            CENTURION (SAT-SUN)<br>
+            JOHANNESBURG (FRI)<br>
+            SANDTON(SAT-SUN)<br><br>
+            </>
+
+            <h1><u>Order Days:</u></h1>
+
+            <p>
+            Monday           10:00am-17:00pm <br>
+
+            Tuesday         10:00am-17:00pm <br>
+
+            Wednesday     10;00am-17:00pm<br><br>
+            </p>
+
+            <h1><u>Delivery/Collection days:</u></h1>
+            <p>
+            Thursday        12:00pm-17:00pm <br>
+
+            Friday             12:00pm-17:00pm<br>
+
+            Saturday         12:00pm-17:00pm<br>
+
+            Sunday           12:00pm-17:00pm<br>
             </p>
         </div>
 
@@ -77,6 +108,9 @@ $all_product = $conn->query($spl);
     </section>
 
     <section class="menu">
+        <div class="menu_heading">
+        <h1>Our Menu:</h1>
+        </div>
     <div class="container">
         <div class="row">
             <?php while($row = mysqli_fetch_assoc($all_product)) { ?>
@@ -103,7 +137,7 @@ $all_product = $conn->query($spl);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
 </body>
 
 <footer class="footer">

@@ -146,8 +146,8 @@ ul li:hover::after {
 }
 
 .goodwords {
-    font-size: xx-large;
-    padding: 20vh 0vh 0vh;
+    font-size: larger;
+    padding: 18vh 0vh 0vh;
 }
 
 /***** ARROW ANIMATION *****/
@@ -324,17 +324,22 @@ button.add:hover {
 
 .footer p {
     margin-bottom: 0;
-    font-size: 24px; /* Increased font size */
+    font-size: 20px; /* Increased font size */
 }
 
 .footer p a {
     color: #fff;
     margin-right: 20px; /* Increased margin right */
-    font-size: 24px; /* Increased font size */
+    font-size: 20px; /* Increased font size */
 }
 
 .footer p a:last-child {
     margin-right: 0;
 }
 
-
+.menu_heading{
+    font-family: 'Spicy Rice', sans-serif;
+    font-size: xx-large !important;
+    text-align: center;
+    padding: 0vh 0vh 5vh;
+}
