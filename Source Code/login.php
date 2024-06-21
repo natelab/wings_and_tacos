@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +25,16 @@
     <section class="container_login">
         <div class="box form-box">
             <?php
-
             include("config.php");
+
             if(isset($_POST['submit'])){
                 $email = mysqli_real_escape_string($con, $_POST['email']);
                 $password = mysqli_real_escape_string($con, $_POST['password']);
 
-                $result = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND password='$password'") or die("Select Error");
+                $result = mysqli_query($con, "SELECT * FROM customers WHERE email='$email'") or die("Select Error");
                 $row = mysqli_fetch_assoc($result);
 
-                if(is_array($row) && !empty($row)){
+                if ($row && password_verify($password, $row['password'])) {
                     $_SESSION['valid'] = $row['email'];
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['surname'] = $row['surname'];

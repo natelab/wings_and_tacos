@@ -40,46 +40,76 @@ if (isset($_POST['update'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="update_details_style.css">
+
+    <!-- Icon for the Title of the website -->
+    <link rel="icon" href="Images/Logo - Copy.jpg" />
 </head>
 <body>
-    <div class="container">
-        <div class="box form-box">
-            <h2>Update Your Details</h2>
-            <form action="" method="post">
-                <div class="field">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
-                </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Update Your Details</h2>
+            </div>
+            <div class="card-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" class="form-control" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                    </div>
 
-                <div class="field">
-                    <label for="surname">Surname:</label>
-                    <input type="text" name="surname" id="surname" value="<?php echo htmlspecialchars($user['surname']); ?>" required>
-                </div>
+                    <div class="form-group">
+                        <label for="surname">Surname:</label>
+                        <input type="text" name="surname" id="surname" class="form-control" value="<?php echo htmlspecialchars($user['surname']); ?>" required>
+                    </div>
 
-                <div class="field">
-                    <label for="contact_num">Contact Number:</label>
-                    <input type="text" name="contact_num" id="contact_num" value="<?php echo htmlspecialchars($user['contact_num']); ?>" required>
-                </div>
+                    <div class="form-group">
+                        <label for="contact_num">Contact Number:</label>
+                        <input type="text" name="contact_num" id="contact_num" class="form-control" value="<?php echo htmlspecialchars($user['contact_num']); ?>" required>
+                    </div>
 
-                <div class="field">
-                    <label for="address">Address:</label>
-                    <input type="text" name="address" id="address" value="<?php echo htmlspecialchars($user['address']); ?>" required>
-                </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" id="address" class="form-control" value="<?php echo htmlspecialchars($user['address']); ?>" required>
+                    </div>
 
-                <div class="field">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($user['password']); ?>" required>
-                </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control" value="<?php echo htmlspecialchars($user['password']); ?>" required>
+                    </div>
 
-                <div class="field submit">
-                    <input type="submit" name="update" value="Update" class="btn">
-                </div>
-            </form>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="Images/Footer Logo.png" alt="Footer Logo" class="footer-logo">
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="social-links">
+                    <p>Connect with us: <br><!-- Added text -->
+                        <a href="https://www.tiktok.com/@mamtimande333?lang=en"><i class="fab fa-tiktok fa-lg"></i></a>
+                        <a href="https://www.instagram.com/wings_tacos/"><i class="fab fa-instagram fa-lg"></i></a>
+                    </p>
+                </div>
+                <p class="copyright">
+                    Wings & Tacos 2024 ©. All rights reserved.
+                    <br><br> <!-- Added empty line space -->
+                    This Website Was Developed, Designed and Is Maintained by Nathan Tinashe Mazonde
+                    <br>
+                    <a href="https://www.linkedin.com/in/nathan-mazonde"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://github.com/natelab"><i class="fab fa-github fa-lg"></i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </html>
-
-
-

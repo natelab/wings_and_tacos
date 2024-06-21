@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$spl = "SELECT * FROM products";
+$spl = "SELECT * FROM product";
 $all_product = $conn->query($spl);
 
 ?>
@@ -43,10 +43,10 @@ $all_product = $conn->query($spl);
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact_us">Contact Us</a></li>
             </ul>
             <button onclick="window.location.href='login.php'" class="btn btn-outline-primary ml-2">Login</button>
             <button onclick="window.location.href='register.php'" class="btn btn-outline-primary ml-2">Register</button>
@@ -58,7 +58,7 @@ $all_product = $conn->query($spl);
     </nav>
 </section>
 
-    <section class="moreinfo">
+    <section id="home" class="moreinfo">
         <!-- MORE INFORMATION SECTION -->
         <div class="goodwords text-center">
             <p>BOLD FLAVORS!<br>
@@ -107,7 +107,7 @@ $all_product = $conn->query($spl);
         </div>
     </section>
 
-    <section class="menu">
+    <section id="menu" class="menu">
         <div class="menu_heading">
         <h1>Our Menu:</h1>
         </div>
@@ -140,7 +140,7 @@ $all_product = $conn->query($spl);
 
 </body>
 
-<footer class="footer">
+<footer id="contact_us" class="footer">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">

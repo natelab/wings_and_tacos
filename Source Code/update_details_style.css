@@ -89,3 +89,48 @@ body {
     font-size: 14px;
     margin-bottom: 10px;
 }
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 60px 0; /* Increased padding */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    text-align: center;
+}
+
+.footer-logo {
+    width: 320px; /* Adjusted width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+.social-links {
+    margin-bottom: 20px; /* Increased margin bottom */
+}
+
+.social-links a {
+    color: #fff;
+    margin: 0 10px; /* Adjusted margin for spacing */
+    font-size: 20px; /* Increased font size for social icons */
+}
+
+.social-links a:last-child {
+    margin-right: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    font-size: 22px; /* Adjusted font size */
+}
+
+.footer p a {
+    color: #fff;
+    margin: 0 10px; /* Adjusted margin for spacing */
+    font-size: 22px; /* Increased font size */
+}
+
+.footer p a:last-child {
+    margin-right: 0;
+}

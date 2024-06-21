@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,11 +44,9 @@
             $email_already_used = false;
             $password_error = "";
             $password_mismatch = false;
-            $email_domain_error = false;
+            $email_error = false;
 
             $name = $surname = $email = $contact_num = $address = "";
-
-            $valid_domains = array("example.com", "example.org", "example.net");
 
             if(isset($_POST['submit'])){
                 $name = $_POST['name'];
@@ -59,23 +57,24 @@
                 $password = $_POST['password'];
                 $confirm_password = $_POST['confirm_password'];
 
-                $email_parts = explode("@", $email);
-                $domain = array_pop($email_parts);
-                if (!in_array($domain, $valid_domains)) {
-                    $email_domain_error = true;
+                if (strpos($email, '@') === false || substr($email, -4) !== '.com') {
+                    $email_error = true;
                 }
 
                 if(strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password) || !preg_match('/[0-9]/', $password) || !preg_match('/[\W]/', $password)) {
                     $password_error = "Password must be at least 8 characters long, include one uppercase letter, one special character, and one number.";
                 } elseif($password !== $confirm_password) {
                     $password_mismatch = true;
-                } elseif(!$email_domain_error) {
-                    $verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email='$email'");
+                } elseif(!$email_error) {
+                    $verify_query = mysqli_query($con, "SELECT Email FROM customers WHERE Email='$email'");
 
                     if(mysqli_num_rows($verify_query) != 0) {
                         $email_already_used = true;
                     } else {
-                        mysqli_query($con, "INSERT INTO users(name, surname, email, contact_num, address, password) VALUES('$name', '$surname', '$email', '$contact_num', '$address', '$password')") or die("Error Occurred");
+                        // Hash the password before storing it
+                        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+                        mysqli_query($con, "INSERT INTO customers(name, surname, email, contact_num, address, password) VALUES('$name', '$surname', '$email', '$contact_num', '$address', '$hashed_password')") or die("Error Occurred");
 
                         $registration_successful = true;
                     }
@@ -109,8 +108,8 @@
                 <div class="form-group field input"> 
                     <label for="email">Email</label>
                     <input type="email" name="email" autocomplete="off" id="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" required>
-                    <?php if ($email_domain_error): ?>
-                        <div class="error">Invalid email domain.</div>
+                    <?php if ($email_error): ?>
+                        <div class="error">Invalid email format. Email must contain '@' and end with '.com'.</div>
                     <?php endif; ?>
                 </div>
 
@@ -183,7 +182,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    
 </body>
 
 <footer class="footer">

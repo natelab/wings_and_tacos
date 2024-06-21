@@ -2,6 +2,11 @@
 session_start();
 require_once 'connection.php';
 
+// Initialize cart if not set
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
 // Handle adding to cart
 if (isset($_POST['add_to_cart'])) {
     $product_name = $_POST['product_name'];
@@ -60,13 +65,12 @@ foreach ($_SESSION['cart'] as $product) {
     $total += $product['price'] * $product['quantity'];
 }
 
-
 // Handle clearing cart
 if (isset($_POST['clear'])) {
     unset($_SESSION['cart']);
 }
 
-$spl = "SELECT * FROM products";
+$spl = "SELECT * FROM product";
 $all_product = $conn->query($spl);
 ?>
 <!DOCTYPE html>
@@ -85,7 +89,7 @@ $all_product = $conn->query($spl);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="menu_order_style.css"/>
 
-    <!-- CND Link to Font Awesome -->
+    <!-- CDN Link to Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -126,14 +130,19 @@ $all_product = $conn->query($spl);
                     <div class="card-body text-center">
                         <h5 class="caption"><?php echo $row["prod_name"]; ?></h5>
                         <p class="price">R<?php echo $row["price"]; ?></p>
-                        <button onclick="window.location.href='login.php'" class="btn btn-primary add">Add to cart</button>
+                        <form method="post" action="">
+                            <input type="hidden" name="product_name" value="<?php echo $row['prod_name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo base64_encode($row['img']); ?>">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary add">Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <?php } ?>
         </div>
     </div>
-</section>
+    </section>
 
     <section class="cart">
         <h2>Shopping Cart</h2>
